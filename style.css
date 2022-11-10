@@ -1,0 +1,31 @@
+:root {
+  /*Primary*/
+  --orange: hsl(26, 100%, 55%);
+  --paleOrange: hsl(25, 100%, 94%);
+
+  /* Neutral */
+  --veryDarkBlue: hsl(220, 13%, 13%);
+  --darkgrayishBlue: hsl(219, 9%, 45%);
+  --grayishBlue: hsl(220, 14%, 75%);
+  --lightGrayishBlue: hsl(223, 64%, 98%);
+  --white: hsl(0, 0%, 100%);
+  --overlayBlack: hsla(0, 0%, 0%, 0.747);
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  margin: 0 auto;
+}
+
+/***********************************/
+/* NAVBAR */
+/***********************************/
