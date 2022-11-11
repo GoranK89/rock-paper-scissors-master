@@ -1,15 +1,18 @@
 :root {
-  /*Primary*/
-  --orange: hsl(26, 100%, 55%);
-  --paleOrange: hsl(25, 100%, 94%);
+  /* Primary */
+  --ScissorsGradient: linear-gradient(hsl(39, 89%, 49%), hsl(40, 84%, 53%));
+  --PaperGradient: linear-gradient(hsl(230, 89%, 62%), hsl(230, 89%, 65%));
+  --RockGradient: linear-gradient(hsl(349, 71%, 52%), hsl(349, 70%, 56%));
+  --LizardGradient: linear-gradient(hsl(261, 73%, 60%), hsl(261, 72%, 63%));
+  --Cyan: linear-gradient(hsl(189, 59%, 53%), hsl(189, 58%, 57%));
 
   /* Neutral */
-  --veryDarkBlue: hsl(220, 13%, 13%);
-  --darkgrayishBlue: hsl(219, 9%, 45%);
-  --grayishBlue: hsl(220, 14%, 75%);
-  --lightGrayishBlue: hsl(223, 64%, 98%);
-  --white: hsl(0, 0%, 100%);
-  --overlayBlack: hsla(0, 0%, 0%, 0.747);
+  --DarkText: hsl(229, 25%, 31%);
+  --ScoreText: hsl(229, 64%, 46%);
+  --HeaderOutline: hsl(217, 16%, 45%);
+
+  /* Background */
+  --RadialGradient: radial-gradient(hsl(214, 47%, 23%), hsl(237, 49%, 15%));
 }
 
 * {
@@ -23,9 +26,170 @@ html {
 }
 
 body {
+  max-width: 144rem;
   margin: 0 auto;
+  height: 100vh;
+  background: var(--RadialGradient);
+  font-family: 'Barlow Semi Condensed', sans-serif;
+}
+
+.border-radius {
+  border-radius: 1rem;
 }
 
 /***********************************/
-/* NAVBAR */
+/* Title and score box*/
 /***********************************/
+
+.title-score_wrapper {
+  max-width: 100rem;
+  margin: 6rem auto 10rem auto;
+  display: flex;
+  justify-content: space-between;
+  border: 2px solid var(--HeaderOutline);
+  padding: 2rem;
+}
+
+h1 {
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 7rem;
+  line-height: 5.6rem;
+}
+
+.score-container {
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 26rem;
+}
+
+.score-text {
+  color: var(--ScoreText);
+  text-transform: uppercase;
+  font-size: 1.8rem;
+  letter-spacing: 3px;
+}
+
+.score-number {
+  color: var(--DarkText);
+  font-size: 10rem;
+  font-weight: 700;
+}
+
+/***********************************/
+/* Game icons */
+/***********************************/
+
+.game-icons_wrapper {
+  position: relative;
+  max-width: 100rem;
+  margin: 0 auto 10rem auto;
+  display: grid;
+  grid-template-columns: 300px 300px;
+  justify-items: center;
+  justify-content: center;
+  row-gap: 10rem;
+}
+
+.game-icons_wrapper::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  /* transform: translate(-100%, 50%); */
+  top: 0;
+  left: 0;
+  background: url('images/bg-triangle.svg') no-repeat center;
+  z-index: -1;
+}
+
+.game-icon-container {
+  cursor: pointer;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 16rem;
+  width: 16rem;
+  box-shadow: inset 0px 17px 0px -9px rgba(0, 0, 0, 0.2);
+}
+
+.game-icon {
+  width: 70px;
+}
+
+.icon-paper,
+.icon-scissors,
+.icon-rock {
+  border-radius: 50%;
+  position: relative;
+  border: 1px solid transparent;
+  background-clip: padding-box;
+}
+.icon-rock {
+  grid-column: 1 / span 2;
+}
+
+.icon-paper::after,
+.icon-scissors::after,
+.icon-rock::after {
+  position: absolute;
+  border-radius: 50%;
+  top: -2.5rem;
+  bottom: -2.5rem;
+  left: -2.5rem;
+  right: -2.5rem;
+  content: '';
+  z-index: -1;
+}
+.icon-paper::after {
+  background: var(--PaperGradient);
+  box-shadow: 0px 8px 0px 0px hsl(230, 89%, 60%);
+}
+.icon-scissors::after {
+  background: var(--ScissorsGradient);
+  box-shadow: 0px 8px 0px 0px hsl(39, 89%, 39%);
+}
+.icon-rock::after {
+  background: var(--RockGradient);
+  box-shadow: 0px 8px 0px 0px hsl(349, 71%, 42%);
+}
+
+.btn-rules {
+  font-family: 'Barlow Semi Condensed', sans-serif;
+  font-size: 1.6rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  border: none;
+  background: none;
+  color: #fff;
+  border: 2px solid var(--HeaderOutline);
+  cursor: pointer;
+
+  padding: 1rem 5rem;
+  align-self: flex-end;
+  margin: 0 5rem 3rem 0;
+}
+
+/* Footer */
+.attribution_wrapper {
+  display: flex;
+  flex-direction: column;
+
+  font-size: 1.4rem;
+  text-align: center;
+  margin-bottom: 5rem;
+}
+
+.attribution-links-container {
+  display: flex;
+  align-self: center;
+}
+
+.attribution_wrapper a {
+  color: hsl(228, 45%, 44%);
+  margin-left: 3px;
+}
