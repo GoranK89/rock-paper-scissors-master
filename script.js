@@ -28,24 +28,53 @@ window.addEventListener('keydown', CloseRulesModalEscapeKey);
 /* Gameplay? */
 const gameBoard = document.querySelector('.game-icons_wrapper');
 const youPickedBoard = document.querySelector('.game-icons_wrapper-picked');
-const pickedPlayerImgDiv = document.querySelector('.game-icon-box-picked');
+const [playerPickBox, housePickBox] = document.querySelectorAll(
+  '.game-icon-box-picked'
+);
+const [placeholderPlayer, placeholderHouse] =
+  document.querySelectorAll('.placeholder');
 const pickedPlayerImg = document.querySelector('.game-icon-picked_player');
-const placeholderDivs = document.querySelectorAll('.placeholder');
+const pickedHouseImg = document.querySelector('.game-icon-picked_house');
+
+const imgArr = document.querySelectorAll('.game-icon');
+const gameMovesArr = [];
+const GetGameMoveNames = function () {
+  imgArr.forEach(item => {
+    gameMovesArr.push(item.getAttribute('src').slice(12, -4));
+  });
+};
+GetGameMoveNames();
 
 const ChangeBoard = function () {
   gameBoard.classList.add('hidden');
   youPickedBoard.classList.remove('hidden');
 };
-const ShowPickedPlayerIcon = function (iconName) {
-  pickedPlayerImgDiv.classList.remove('hidden');
-  pickedPlayerImgDiv.classList.add(`icon-${iconName}-picked`);
-  pickedPlayerImg.src = `images/icon-${iconName}.svg`;
-};
 
-// get array of icons, generate random number, use it in index
-const imgArr = document.querySelectorAll('.game-icon');
+// make random number result and its img popup delayed
+// idea: multply random num by img arr length
+
 const GenerateRandomNum = function () {
   return Math.floor(Math.random() * 3);
+};
+
+const ShowPickedPlayerIcon = function (iconName) {
+  placeholderPlayer.classList.remove('hidden');
+  placeholderHouse.classList.remove('hidden');
+  playerPickBox.classList.add(`icon-${iconName}-picked`);
+  pickedPlayerImg.src = `images/icon-${iconName}.svg`;
+};
+const ShowPickedHouseIcon = function () {
+  const randomIndex = GenerateRandomNum();
+  housePickBox.classList.remove('hidden');
+  housePickBox.classList.add(`icon-${gameMovesArr[randomIndex]}-picked`);
+  pickedHouseImg.src = `images/icon-${gameMovesArr[randomIndex]}.svg`;
+};
+const CheckWinner = function () {
+  if (
+    playerPickBox.classList.contains('icon-paper-picked') &&
+    housePickBox.classList.contains('icon-rock-picked')
+  ) {
+  }
 };
 
 gameBoard.addEventListener('click', e => {
@@ -53,7 +82,7 @@ gameBoard.addEventListener('click', e => {
   const getAttribute = clicked?.getAttribute('id');
   if (clicked) {
     ChangeBoard();
-    GenerateRandomNum();
+    setTimeout(ShowPickedHouseIcon, 500);
   }
 
   switch (getAttribute) {
