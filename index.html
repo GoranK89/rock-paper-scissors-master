@@ -23,7 +23,6 @@
     <script defer src="script.js"></script>
 
     <title>Frontend Mentor | Rock, Paper, Scissors</title>
-    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
   </head>
   <body>
     <section class="title-score_wrapper border-radius">
@@ -32,27 +31,27 @@
         Paper<br />
         Scissors
       </h1>
-      <div class="score-container border-radius">
+      <div class="score-box border-radius">
         <p class="score-text">Score</p>
         <p class="score-number">12</p>
       </div>
     </section>
     <section class="game-icons_wrapper">
-      <div class="game-icon-container icon-paper">
+      <div class="game-icon-box icon-paper" id="pick-paper">
         <img
           src="images/icon-paper.svg"
           alt="game icon of a hand showing paper"
           class="game-icon"
         />
       </div>
-      <div class="game-icon-container icon-scissors">
+      <div class="game-icon-box icon-scissors" id="pick-scissors">
         <img
           src="images/icon-scissors.svg"
           alt="game icon of a hand showing scissors"
           class="game-icon"
         />
       </div>
-      <div class="game-icon-container icon-rock">
+      <div class="game-icon-box icon-rock" id="pick-rock">
         <img
           src="images/icon-rock.svg"
           alt="game icon of a hand showing rock"
@@ -60,15 +59,55 @@
         />
       </div>
     </section>
+    <!-- GAME STATE CHANGE -->
+    <section class="game-icons_wrapper-picked hidden">
+      <div class="placeholder_wrapper">
+        <p>You picked</p>
+        <div class="placeholder player">
+          <div class="game-icon-box-picked hidden">
+            <img
+              src="images/icon-rock.svg"
+              alt="game icon"
+              class="game-icon-picked_player"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="placeholder_wrapper">
+        <p>The house picked</p>
+        <div class="placeholder house">
+          <div class="game-icon-box-picked hidden">
+            <img
+              src="images/icon-rock.svg"
+              alt="game icon"
+              class="game-icon-picked_house"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--MODAL-->
+    <section class="game-rules_wrapper border-radius hidden">
+      <div class="game-rules-title-box">
+        <h2>Rules</h2>
+        <img src="images/icon-close.svg" class="icon-close" alt="close icon" />
+      </div>
+      <img
+        src="images/image-rules.svg"
+        alt="image of game rules"
+        class="img-game-rules"
+      />
+    </section>
+    <div class="overlay hidden"></div>
+    <!--MODAL END-->
     <footer class="attribution_wrapper">
       <button class="btn-rules border-radius">Rules</button>
-      <div class="attribution-links-container">
+      <div class="attribution-links-box">
         Challenge by
         <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
           >Frontend Mentor</a
         >. Coded by <a href="#">Goran Kolar</a>.
       </div>
     </footer>
-    <!---->
   </body>
 </html>
