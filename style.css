@@ -234,6 +234,7 @@ h2 {
 .game-icons_wrapper-picked {
   display: flex;
   justify-content: space-evenly;
+  margin-bottom: 10rem;
 }
 
 .placeholder_wrapper {
@@ -280,6 +281,38 @@ h2 {
   right: -3.8rem;
   content: '';
   z-index: -1;
+}
+
+/* Win or lose box */
+
+.win-lose_wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+.win-lose-text {
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 6rem;
+}
+.btn-play-again {
+  border: none;
+  cursor: pointer;
+  color: var(--DarkText);
+  font-family: 'Barlow Semi Condensed', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  padding: 1.4rem 6rem;
+  transition: 0.2s;
+}
+
+.btn-play-again:hover,
+.btn-play-again:active {
+  color: hsl(349, 71%, 52%);
 }
 
 /***********************************/

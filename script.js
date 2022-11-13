@@ -25,7 +25,7 @@ iconClose.addEventListener('click', CloseRulesModal);
 overlay.addEventListener('click', CloseRulesModal);
 window.addEventListener('keydown', CloseRulesModalEscapeKey);
 
-/* Gameplay? */
+/* Gameplay */
 const gameBoard = document.querySelector('.game-icons_wrapper');
 const youPickedBoard = document.querySelector('.game-icons_wrapper-picked');
 const [playerPickBox, housePickBox] = document.querySelectorAll(
@@ -68,36 +68,73 @@ const ShowPickedHouseIcon = function () {
   housePickBox.classList.remove('hidden');
   housePickBox.classList.add(`icon-${gameMovesArr[randomIndex]}-picked`);
   pickedHouseImg.src = `images/icon-${gameMovesArr[randomIndex]}.svg`;
+  house = gameMovesArr[randomIndex];
 };
+
+// WIN OR LOSE??
+const winOrLoseDiv = document.querySelector('.win-lose_wrapper');
+const winLoseText = document.querySelector('.win-lose-text');
+const scoreText = document.querySelector('.score-number');
+
+let score = 12;
+let house;
+let player;
+
+const DisplayWinOrLose = function () {
+  winOrLoseDiv.classList.remove('hidden');
+};
+const HideWinOrLose = function () {
+  winOrLoseDiv.classList.add('hidden');
+};
+
 const CheckWinner = function () {
-  if (
-    playerPickBox.classList.contains('icon-paper-picked') &&
-    housePickBox.classList.contains('icon-rock-picked')
+  const [paper, scissors, rock] = gameMovesArr;
+  const draw = player === house;
+  if (draw) winLoseText.textContent = 'DRAW';
+  else if (
+    (player === paper && house === scissors) ||
+    (player === scissors && house === rock) ||
+    (player === rock && house === paper)
   ) {
+    winLoseText.textContent = 'YOU LOSE';
+    score--;
+    UpdateScore();
+  } else {
+    winLoseText.textContent = 'YOU WIN';
+    score++;
+    UpdateScore();
   }
+};
+const UpdateScore = function () {
+  scoreText.textContent = score;
 };
 
 gameBoard.addEventListener('click', e => {
   const clicked = e.target.closest('.game-icon-box');
-  const getAttribute = clicked?.getAttribute('id');
+  const getAttribute = clicked?.getAttribute('id').slice(5);
+
   if (clicked) {
+    player = getAttribute;
     ChangeBoard();
-    setTimeout(ShowPickedHouseIcon, 500);
+    setTimeout(() => {
+      ShowPickedHouseIcon();
+      CheckWinner();
+    }, 500);
+    setTimeout(DisplayWinOrLose, 1000);
   }
 
   switch (getAttribute) {
-    case 'pick-paper':
+    case 'paper':
       ShowPickedPlayerIcon('paper');
       break;
-    case 'pick-scissors':
+    case 'scissors':
       ShowPickedPlayerIcon('scissors');
       break;
-    case 'pick-rock':
+    case 'rock':
       ShowPickedPlayerIcon('rock');
       break;
     default:
       break;
   }
-
   if (!clicked) return;
 });
