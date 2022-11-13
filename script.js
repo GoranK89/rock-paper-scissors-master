@@ -25,7 +25,7 @@ iconClose.addEventListener('click', CloseRulesModal);
 overlay.addEventListener('click', CloseRulesModal);
 window.addEventListener('keydown', CloseRulesModalEscapeKey);
 
-/* Gameplay */
+/* Game */
 const gameBoard = document.querySelector('.game-icons_wrapper');
 const youPickedBoard = document.querySelector('.game-icons_wrapper-picked');
 const [playerPickBox, housePickBox] = document.querySelectorAll(
@@ -45,16 +45,19 @@ const GetGameMoveNames = function () {
 };
 GetGameMoveNames();
 
-const ChangeBoard = function () {
-  gameBoard.classList.add('hidden');
-  youPickedBoard.classList.remove('hidden');
+const ChangeGameBoardTo = function (gameState) {
+  if (gameState === 'picked-state') {
+    gameBoard.classList.add('hidden');
+    youPickedBoard.classList.remove('hidden');
+  }
+  if (gameState === 'play-state') {
+    gameBoard.classList.remove('hidden');
+    youPickedBoard.classList.add('hidden');
+  }
 };
 
-// make random number result and its img popup delayed
-// idea: multply random num by img arr length
-
 const GenerateRandomNum = function () {
-  return Math.floor(Math.random() * 3);
+  return Math.floor(Math.random() * gameMovesArr.length);
 };
 
 const ShowPickedPlayerIcon = function (iconName) {
@@ -75,8 +78,9 @@ const ShowPickedHouseIcon = function () {
 const winOrLoseDiv = document.querySelector('.win-lose_wrapper');
 const winLoseText = document.querySelector('.win-lose-text');
 const scoreText = document.querySelector('.score-number');
+const btnPlayAgain = document.querySelector('.btn-play-again');
 
-let score = 12;
+let score = 10;
 let house;
 let player;
 
@@ -115,12 +119,12 @@ gameBoard.addEventListener('click', e => {
 
   if (clicked) {
     player = getAttribute;
-    ChangeBoard();
+    ChangeGameBoardTo('picked-state');
+    setTimeout(ShowPickedHouseIcon, 500);
     setTimeout(() => {
-      ShowPickedHouseIcon();
+      DisplayWinOrLose();
       CheckWinner();
-    }, 500);
-    setTimeout(DisplayWinOrLose, 1000);
+    }, 1000);
   }
 
   switch (getAttribute) {
@@ -137,4 +141,20 @@ gameBoard.addEventListener('click', e => {
       break;
   }
   if (!clicked) return;
+});
+
+// PLAY AGAIN
+const ClearPickedBoard = function () {
+  placeholderPlayer.classList.add('hidden');
+  placeholderHouse.classList.add('hidden');
+  housePickBox.classList.add('hidden');
+  for (let i = 0; i < gameMovesArr.length; i++) {
+    housePickBox.classList.remove(`icon-${gameMovesArr[i]}-picked`);
+    playerPickBox.classList.remove(`icon-${gameMovesArr[i]}-picked`);
+  }
+};
+btnPlayAgain.addEventListener('click', function () {
+  ChangeGameBoardTo('play-state');
+  ClearPickedBoard();
+  HideWinOrLose();
 });
