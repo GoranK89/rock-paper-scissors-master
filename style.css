@@ -337,11 +337,6 @@ h2 {
   margin-left: 3px;
 }
 
-/*Helper classes*/
-.hidden {
-  display: none;
-}
-
 /***********************************/
 /* MEDIA */
 /***********************************/
@@ -403,7 +398,7 @@ h2 {
 
 @media (max-width: 900px) {
   .title-score_wrapper {
-    margin: 10rem 2rem;
+    margin: 2rem 2rem 10rem 2rem;
   }
 
   h1 {
@@ -461,6 +456,7 @@ h2 {
   .game-icons_wrapper-picked {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    justify-content: space-evenly;
   }
 
   .placeholder_wrapper {
@@ -496,4 +492,9 @@ h2 {
     left: -1.4rem;
     right: -1.4rem;
   }
+}
+
+/*Helper classes*/
+.hidden {
+  display: none;
 }
