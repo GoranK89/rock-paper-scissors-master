@@ -341,3 +341,159 @@ h2 {
 .hidden {
   display: none;
 }
+
+/***********************************/
+/* MEDIA */
+/***********************************/
+
+@media (max-width: 1035px) {
+  .title-score_wrapper {
+    margin: 6rem 2rem;
+  }
+
+  .game-icon-picked_player,
+  .game-icon-picked_house {
+    width: 100px;
+  }
+  .game-icon-box-picked {
+    height: 20rem;
+    width: 20rem;
+  }
+  .icon-paper-picked::after,
+  .icon-scissors-picked::after,
+  .icon-rock-picked::after {
+    top: -3rem;
+    bottom: -3rem;
+    left: -3rem;
+    right: -3rem;
+  }
+}
+
+@media (max-width: 800px) {
+  h1 {
+    font-size: 5rem;
+    line-height: 4rem;
+  }
+
+  .score-box {
+    width: 20rem;
+  }
+
+  .score-number {
+    font-size: 6rem;
+  }
+
+  .game-icon-box {
+    height: 12rem;
+    width: 12rem;
+  }
+
+  .game-icon {
+    width: 60px;
+  }
+  .icon-paper::after,
+  .icon-scissors::after,
+  .icon-rock::after {
+    top: -2rem;
+    bottom: -2rem;
+    left: -2rem;
+    right: -2rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .title-score_wrapper {
+    margin: 10rem 2rem;
+  }
+
+  h1 {
+    font-size: 3rem;
+    line-height: 2.4rem;
+  }
+
+  .score-box {
+    width: 8rem;
+    padding: 1rem 0;
+  }
+
+  .score-text {
+    font-size: 1.2rem;
+  }
+
+  .score-number {
+    font-size: 4rem;
+  }
+
+  .game-icons_wrapper {
+    grid-template-columns: 200px 200px;
+    row-gap: 8rem;
+  }
+
+  .game-icons_wrapper::before {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -45%);
+  }
+
+  .game-icon-box {
+    height: 10rem;
+    width: 10rem;
+  }
+
+  .game-icon {
+    width: 50px;
+  }
+  .icon-paper::after,
+  .icon-scissors::after,
+  .icon-rock::after {
+    top: -1.2rem;
+    bottom: -1.2rem;
+    left: -1.2rem;
+    right: -1.2rem;
+  }
+
+  .btn-rules {
+    align-self: center;
+    margin: 0 0 3rem 0;
+  }
+
+  /* Game state change */
+  .game-icons_wrapper-picked {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .placeholder_wrapper {
+    flex-direction: column-reverse;
+    gap: 5rem;
+    margin-bottom: 5rem;
+  }
+
+  .placeholder_wrapper p {
+    font-size: 1.4rem;
+    letter-spacing: 2px;
+  }
+
+  .win-lose_wrapper {
+    grid-row: 2;
+    grid-column: 1 / -1;
+  }
+
+  .game-icon-picked_player,
+  .game-icon-picked_house {
+    width: 50px;
+  }
+  .game-icon-box-picked,
+  .placeholder {
+    height: 10rem;
+    width: 10rem;
+  }
+  .icon-paper-picked::after,
+  .icon-scissors-picked::after,
+  .icon-rock-picked::after {
+    top: -1.4rem;
+    bottom: -1.4rem;
+    left: -1.4rem;
+    right: -1.4rem;
+  }
+}

@@ -74,13 +74,13 @@ const ShowPickedHouseIcon = function () {
   house = gameMovesArr[randomIndex];
 };
 
-// WIN OR LOSE??
+// WIN/LOSE Logic
 const winOrLoseDiv = document.querySelector('.win-lose_wrapper');
 const winLoseText = document.querySelector('.win-lose-text');
 const scoreText = document.querySelector('.score-number');
 const btnPlayAgain = document.querySelector('.btn-play-again');
 
-let score = 10;
+let score = Number(scoreText.textContent);
 let house;
 let player;
 
@@ -108,6 +108,12 @@ const CheckWinner = function () {
     score++;
     UpdateScore();
   }
+
+  if (score < 1) {
+    alert(`Game over, score will reset to 10`);
+    score = 10;
+    scoreText.textContent = score;
+  }
 };
 const UpdateScore = function () {
   scoreText.textContent = score;
@@ -116,7 +122,6 @@ const UpdateScore = function () {
 gameBoard.addEventListener('click', e => {
   const clicked = e.target.closest('.game-icon-box');
   const getAttribute = clicked?.getAttribute('id').slice(5);
-
   if (clicked) {
     player = getAttribute;
     ChangeGameBoardTo('picked-state');
